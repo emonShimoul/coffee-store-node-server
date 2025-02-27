@@ -78,6 +78,12 @@ async function run() {
     });
 
     // Users related API
+    app.get("/users", async (req, res) => {
+      const cursor = userCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     app.post("/users", async (req, res) => {
       const newUser = req.body;
       console.log("Creating new user", newUser);
